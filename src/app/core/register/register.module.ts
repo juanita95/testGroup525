@@ -5,6 +5,7 @@ import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MaterialDesignerModule} from "../../material-designer/material-designer.module";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {MaterialDesignerModule} from "../../material-designer/material-designer.
     FormsModule,
     ReactiveFormsModule,
     MaterialDesignerModule,
-    RegisterRoutingModule
+    RegisterRoutingModule,
+    SharedModule,
   ]
 })
 export class RegisterModule { }

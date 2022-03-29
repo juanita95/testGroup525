@@ -1,1 +1,15 @@
-<p>user-management works!</p>
+<!-- back to last page-->
+
+<img class="back-icon"
+     alt="Icono de regresar"
+     src="../../../assets/svg/global/back.svg"
+     (click)="backNavigate()"
+     alt="back">
+
+<!-- show table-->
+
+<app-table
+  [columns]="columnsUserAdmin"
+  [columnsName]="columnsNames"
+  [arrayElements]="users"
+></app-table>

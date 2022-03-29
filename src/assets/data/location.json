@@ -1,0 +1,76 @@
+[
+  {
+    "id": 0,
+    "name": "Colombia",
+    "states": [
+      {
+        "id": 0,
+        "name": "Cundinamarca",
+        "cities": [
+          {
+            "id": 0,
+            "name": "Bogotá"
+          },
+          {
+            "id": 1,
+            "name": "Chia"
+          },
+          {
+            "id": 2,
+            "name": "Zipaquirá"
+          },
+          {
+            "id": 3,
+            "name": "Soacha"
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Caldas",
+        "cities": [
+          {
+            "id": 0,
+            "name": "Manizales"
+          },
+          {
+            "id": 1,
+            "name": "Chinchina"
+          },
+          {
+            "id": 2,
+            "name": "Aranzazu"
+          },
+          {
+            "id": 3,
+            "name": "Salamina"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Risaralda",
+        "cities": [
+          {
+            "id": 0,
+            "name": "Pereira"
+          },
+          {
+            "id": 1,
+            "name": "dosquebradas"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "México",
+    "states": []
+  },
+  {
+    "id": 2,
+    "name": "Argentina",
+    "states": []
+  }
+]

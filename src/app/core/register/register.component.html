@@ -1,158 +1,203 @@
 <main class="register-user">
+
+  <!-- title register -->
+
   <h1 class="text-title main-title">
     FORMULARIO DE CONTACTO
   </h1>
-  <body class="body-register">
+
+  <!-- body register -->
+
+  <body class="body-register scrollbar-gr">
    <form class="form-bl" autocomplete="off" [formGroup]="formRegister" (ngSubmit)="register()">
-    <section class="input-row">
-      <mat-form-field appearance="fill" class="mat-form-general">
-        <mat-select [class.is-invalid]="invalidField('gender')"
-                    class="general-select"
-                    formControlName="gender"
-                    placeholder="Sexo*">
-          <mat-option *ngFor="let gender of genders" [value]="gender.id">
-            {{gender.text}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+     <h3 class="sub-title-gr">
+       Contacto
+     </h3>
 
-      <div (click)="dp.open()" >
-        <mat-form-field appearance="fill" [class.is-invalid-date-picker]="invalidField('birthDate')"
-                        class="container-data-piker">
-          <!--              calendar-->
-          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-          <input matInput
-                 [min]="minDate"
-                 placeholder="Fecha de nacimiento*"
-                 [matDatepicker]="dp"
-                 [class.is-invalid-date-picker]="invalidField('birthDate')"
-                 (dateChange)="dateChange($event)"
-                 formControlName="birthDate">
-          <mat-datepicker class="container-data-piker" #dp disabled="false"></mat-datepicker>
-          <!--        icon calendar-->
-          <span class="icon-calendar" (click)="dp.open()"></span>
-        </mat-form-field>
-      </div>
-    </section>
+     <!-- inputs -->
 
-    <section class="input-row">
-      <mat-form-field appearance="fill" class="mat-form-general margin-names">
-        <input matInput
-               class="general-input"
-               type="text"
-               [class.is-invalid]="invalidField('name')"
-               placeholder="Nombre*"
-               formControlName="name">
-      </mat-form-field>
+     <div class="sections-form">
 
-      <mat-form-field appearance="fill" class="mat-form-general margin-names">
-        <input matInput
-               type="text"
-               [class.is-invalid]="invalidField('lastName')"
-               placeholder="Apellido*"
-               class="general-input"
-               formControlName="lastName">
-      </mat-form-field>
-    </section>
+       <!-- inputs gender and date birth-->
 
-    <section class="input-row-alone">
-      <mat-form-field appearance="fill" class="mat-form-general margin-names">
-        <input matInput
-               [class.is-invalid]="invalidField('email')"
-               type="text"
-               placeholder="Email*"
-               class="general-input"
-               formControlName="email">
-      </mat-form-field>
+       <section class="input-row">
+         <mat-form-field appearance="fill" class="mat-form-general">
+           <mat-select [class.is-invalid]="invalidField('sex')"
+                       class="general-select"
+                       (selectionChange)="getGenderSelected($event.value)"
+                       formControlName="sex"
+                       placeholder="Sexo*">
+             <mat-option *ngFor="let gender of genders" [value]="gender.id">
+               {{gender.gender}}
+             </mat-option>
+           </mat-select>
+         </mat-form-field>
 
-    </section>
+         <div (click)="dp.open()" >
+           <mat-form-field appearance="fill" [class.is-invalid-date-picker]="errorValidationAge"
+                           class="container-data-piker">
+             <!--              calendar-->
+             <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+             <input matInput
+                    placeholder="Fecha de nacimiento*"
+                    [matDatepicker]="dp"
+                    [max]="currentDate"
+                    [class.is-invalid-date-picker]="errorValidationAge"
+                    (dateChange)="dateChange($event.value)"
+                    formControlName="date_birthday">
+             <mat-datepicker class="container-data-piker" #dp disabled="false"></mat-datepicker>
+             <!--        icon calendar-->
+             <span class="icon-calendar" (click)="dp.open()"></span>
+           </mat-form-field>
+         </div>
+       </section>
 
-    <section class="input-row-alone">
-      <mat-form-field appearance="fill" class="mat-form-general margin-names">
-        <input matInput
-               type="text"
-               [class.is-invalid]="invalidField('address')"
-               placeholder="Dirección*"
-               class="general-input"
-               formControlName="address">
-      </mat-form-field>
+       <!-- inputs name and last name-->
 
-    </section>
+       <section class="input-row">
+         <mat-form-field appearance="fill" class="mat-form-general margin-names">
+           <input matInput
+                  class="general-input"
+                  type="text"
+                  [class.is-invalid]="invalidField('name')"
+                  placeholder="Nombre*"
+                  formControlName="name">
+         </mat-form-field>
 
-    <section class="input-row">
-      <mat-form-field appearance="fill" class="mat-form-general">
-        <input matInput
-               type="text"
-               placeholder="Casa / Apartamento"
-               class="general-input"
-               formControlName="typeHome">
-      </mat-form-field>
+         <mat-form-field appearance="fill" class="mat-form-general margin-names">
+           <input matInput
+                  type="text"
+                  [class.is-invalid]="invalidField('last_name')"
+                  placeholder="Apellido*"
+                  class="general-input"
+                  formControlName="last_name">
+         </mat-form-field>
+       </section>
 
-      <mat-form-field appearance="fill" class="mat-form-general">
-        <mat-select [class.is-invalid]="invalidField('country')"
-                    class="general-select "
-                    formControlName="country"
-                    placeholder="País*">
-          <mat-option *ngFor="let gender of genders" [value]="gender.id">
-            {{gender.text}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </section>
+       <!-- input email-->
 
-    <section class="input-row">
-      <mat-form-field appearance="fill" class="mat-form-general">
-        <mat-select [class.is-invalid]="invalidField('state')"
-                    class="general-select "
-                    formControlName="state"
-                    placeholder="Departamento*">
-          <mat-option *ngFor="let gender of genders" [value]="gender.id">
-            {{gender.text}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+       <section class="input-row-alone">
+         <mat-form-field appearance="fill" class="mat-form-general margin-names">
+           <input matInput
+                  [class.is-invalid]="invalidField('email')"
+                  type="text"
+                  placeholder="Email*"
+                  class="general-input"
+                  formControlName="email">
+         </mat-form-field>
 
-      <mat-form-field appearance="fill" class="mat-form-general">
-        <mat-select [class.is-invalid]="invalidField('city')"
-                    class="general-select "
-                    formControlName="city"
-                    placeholder="Ciudad*">
-          <mat-option *ngFor="let gender of genders" [value]="gender.id">
-            {{gender.text}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+       </section>
 
-    </section>
+       <!-- input address-->
 
-    <section class="input-row-alone">
-      <div class="text-area-comment" [class.is-invalid]="invalidField('comments')">
+       <section class="input-row-alone">
+         <mat-form-field appearance="fill" class="mat-form-general margin-names">
+           <input matInput
+                  type="text"
+                  [class.is-invalid]="invalidField('addres')"
+                  placeholder="Dirección*"
+                  class="general-input"
+                  formControlName="addres">
+         </mat-form-field>
+
+       </section>
+
+       <!-- inputs type house and country-->
+
+       <section class="input-row">
+         <mat-form-field appearance="fill" class="mat-form-general">
+           <input matInput
+                  type="text"
+                  placeholder="Casa / Apartamento"
+                  class="general-input"
+                  formControlName="typeHome">
+         </mat-form-field>
+
+         <mat-form-field appearance="fill" class="mat-form-general">
+           <mat-select [class.is-invalid]="invalidField('country')"
+                       class="general-select "
+                       (selectionChange)="getCountrySelected($event.value)"
+                       formControlName="country"
+                       placeholder="País*">
+             <mat-option *ngFor="let location of locations" [value]="location.id">
+               {{location.name}}
+             </mat-option>
+           </mat-select>
+         </mat-form-field>
+       </section>
+
+       <!-- inputs state and city-->
+
+       <section class="input-row" *ngIf="canShowStateCity">
+         <mat-form-field appearance="fill" class="mat-form-general">
+           <mat-select [class.is-invalid]="canShowStateCity && formRegister.value.Deparment === ''"
+                       class="general-select"
+                       (selectionChange)="getStateSelected($event.value)"
+                       formControlName="Deparment"
+                       placeholder="Departamento*">
+             <mat-option *ngFor="let state of states" [value]="state.id">
+               {{state.name}}
+             </mat-option>
+           </mat-select>
+         </mat-form-field>
+
+         <mat-form-field appearance="fill" class="mat-form-general">
+           <mat-select [class.is-invalid]="canShowStateCity && formRegister.value.City === ''"
+                       class="general-select"
+                       (selectionChange)="getCitySelected($event.value)"
+                       formControlName="City"
+                       placeholder="Ciudad*">
+             <mat-option *ngFor="let city of cities" [value]="city.id">
+               {{city.name}}
+             </mat-option>
+           </mat-select>
+         </mat-form-field>
+
+       </section>
+
+       <!-- input comment-->
+
+       <section class="input-row-alone">
+         <div class="text-area-comment" [class.is-invalid]="invalidField('comment')">
               <textarea type="text"
                         maxlength="500"
                         class="text-area-general text-m-bl"
                         cdkTextareaAutosize
                         placeholder="Comentarios*"
-                        formControlName="comments"
+                        formControlName="comment"
                         cdkAutosizeMaxRows="100">
               </textarea>
-      </div>
-    </section>
-     <div class="send-data">
-       <button type="submit" mat-button class="submit-button">Enviar</button>
-     </div>
+         </div>
+       </section>
 
+       <!-- button send data table-->
+
+       <div class="send-data">
+         <button type="submit" mat-button class="submit-button">Enviar</button>
+       </div>
+     </div>
   </form>
+
+   <!-- information-->
+
    <section class="contact-data">
      <div>
+
+       <!-- email-->
+
        <div class="contact">
          <mat-icon class="icon-color"> email</mat-icon>
          <p class="text-m-gy"> consultas@correo.com</p>
        </div>
 
+       <!-- address-->
+
        <div class="contact">
          <mat-icon class="icon-color"> location_on</mat-icon>
          <p class="text-m-gy text-address">  Av.15 de julio Nro B - ciudad - País</p>
        </div>
+
+       <!-- phones-->
 
        <div class="contact">
          <mat-icon class="icon-tell icon-color"> call</mat-icon>
@@ -162,6 +207,8 @@
          </div>
        </div>
      </div>
+
+     <!-- Buttons social media-->
 
      <div class="buttons-social-media">
        <button class="circle-button">

@@ -1,8 +1,6 @@
-@import "./display";
+@import "./fonts";
+@import "./colors";
+@import "./inputs";
 @import "./breakpoints";
-@import "inputs"; // import colors and font
-@import "view-more";
-@import "loading";
-@import "cards";
-@import "modal";
+@import "./display";
 

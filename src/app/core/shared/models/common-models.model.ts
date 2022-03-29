@@ -1,4 +1,8 @@
 export interface User {
+  users: UserData[];
+}
+
+export interface UserData {
   id?: number;
   sex: string;
   date_birthday: Date;
@@ -12,3 +16,5 @@ export interface User {
   comment: string;
   typeHome?: string;
 }
+
+

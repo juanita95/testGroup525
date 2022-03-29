@@ -1,0 +1,315 @@
+@import "./fonts";
+
+@mixin button-unusual($flex, $justify-content, $align-items, $margin, $width, $height, $text-align, $padding, $border, $color, $background, $border-radius, $box-sizing) {
+  display: $flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  margin: $margin;
+  width: $width;
+  height: $height;
+  text-align: $text-align;
+  padding: $padding;
+  border: $border;
+  color: $color;
+  background: $background;
+  border-radius: $border-radius;
+  box-sizing: $box-sizing;
+}
+
+.circle-button {
+  @include button-unusual(
+      flex,
+      center,
+      center,
+      0,
+      2rem,
+      2rem,
+      center,
+      0,
+      none,
+      $bg-white,
+      $bg-green,
+      50%,
+      border-box
+  );
+  cursor: pointer;
+}
+
+.submit-button {
+  @include button-unusual(
+      flex,
+      center,
+      center,
+      0,
+      35%,
+      2.2rem,
+      center,
+      0,
+      none,
+      $bg-white,
+      $bg-green,
+      0%,
+      border-box
+  );
+}
+
+
+.mat-form-general ::ng-deep{
+  .mat-input-element::placeholder{
+    color: $bg-black;
+  }
+
+  .general-input {
+    @include button-unusual(
+        flex,
+        center,
+        center,
+        0,
+        100%,
+        100%,
+        start,
+        0.7rem 0.5rem !important,
+        1px solid $bg-gray,
+        $bg-black,
+        $bg-white,
+        0%,
+        border-box);
+    //margin: 0.1rem 0 1.6rem 0;
+    height: 2.3rem;
+    .mat-select-placeholder {
+      color: $bg-black !important;
+    }
+  }
+
+}
+
+
+::ng-deep .general-select {
+  @include button-unusual(
+      flex,
+      center,
+      center,
+      0,
+      100%,
+      100%,
+      center,
+      0,
+      1px solid $bg-gray,
+      $bg-white,
+      $bg-white,
+      0%,
+      border-box);
+  //margin: 0.1rem 0 1.6rem 0;
+  height: 2.3rem;
+
+  .mat-select-arrow-wrapper {
+    transform: translate(15%, 27%) !important;
+    background: $bg-black;
+    -webkit-mask: url("../../assets/svg/register/more.svg") no-repeat;
+    mask: url("../../assets/svg/register/more.svg") no-repeat;
+    background-repeat: no-repeat;
+
+    .mat-select-arrow {
+      border-top: none;
+    }
+  }
+
+  .mat-select-placeholder {
+    color: $bg-black !important;
+  }
+
+  &[aria-disabled="true"] {
+    @include button-unusual(
+        block !important,
+        center,
+        center,
+        0,
+        100%,
+        100%,
+        center,
+        0,
+        1px solid $bg-gray,
+        $bg-white,
+        $bg-white,
+        0%,
+        border-box);
+  }
+
+  &::placeholder {
+    @extend .text-m-bl;
+
+  }
+
+  .mat-select-value {
+    @extend .text-m-bl;
+  }
+}
+
+.text-area-general{
+  height: 2.7rem !important;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  padding: 2%;
+
+
+}
+
+.text-area-general:focus {
+  border: bisque !important;
+}
+
+.mat-form-general ::ng-deep {
+  .mat-form-field-flex {
+    background: none !important;
+  }
+
+  .mat-form-field-underline {
+    display: none;
+  }
+
+  .mat-form-field-wrapper {
+    padding: 0 !important;
+  }
+
+  .mat-select {
+    margin: 0 !important;
+    padding: 0.7rem 0.5rem !important;
+  }
+
+  .mat-form-field-infix,
+  .mat-form-field-flex {
+    padding: 0;
+    border-top: 0 !important;
+  }
+
+  .mat-form-field-infix {
+    width: 100% !important;
+    min-width: 8.25rem;
+  }
+}
+
+.container-data-piker ::ng-deep {
+  .mat-form-field-flex {
+    border: 1px solid $bg-gray;
+    background: none;
+    height: 2.3rem;
+    border-radius: 0px;
+    padding: 0;
+  }
+
+  .mat-button-wrapper {
+    display: none;
+  }
+
+  .mat-form-field-infix {
+    width: 100%;
+    padding: 0rem 0.5rem !important;
+  }
+
+  .mat-form-field-underline {
+    display: none;
+  }
+
+  .mat-form-field-wrapper{
+    padding: 0 !important;
+  }
+
+  .mat-form-field-suffix{
+    display: none;
+  }
+
+  .mat-input-element::placeholder{
+    color: $bg-black;
+  }
+}
+
+@mixin is-invalid {
+  border: 1px solid $bg-red !important;
+  color: red !important;
+  & + .show-password-icon {
+    color: $bg-red;
+  }
+  &:focus {
+    color: $bg-red;
+  }
+  &::placeholder {
+    color: $bg-red !important;
+  }
+  .mat-select-arrow-wrapper {
+    background-color: $bg-red;
+  }
+  ::ng-deep {
+    .mat-select-placeholder {
+      color: $bg-red !important;
+    }
+
+  }
+}
+
+@mixin is-invalid-date-picker {
+  & + .show-password-icon {
+    color: $bg-red;
+  }
+  &:focus {
+    color: $bg-red;
+  }
+  &::placeholder {
+    color: $bg-red !important;
+  }
+  .mat-select-arrow-wrapper {
+    background-color: $bg-red;
+  }
+}
+
+
+.is-invalid {
+  @include is-invalid;
+
+  ::ng-deep {
+    .mat-select-arrow-wrapper {
+      background: $bg-red !important;
+      .mat-select-arrow {
+        border-top: none;
+      }
+    }
+    textarea {
+      &::placeholder {
+        color: $bg-red !important;
+      }
+      &:-ms-input-placeholder {
+        color: $bg-red !important;
+      }
+      &::-webkit-input-placeholder {
+        color: $bg-red !important;
+      }
+      &:-moz-placeholder {
+        color: $bg-red !important;
+      }
+    }
+  }
+}
+
+.is-invalid-date-picker {
+  @include is-invalid-date-picker;
+  ::ng-deep {
+    .mat-form-field-flex {
+      border: 1px solid $bg-red !important;
+    }
+    textarea {
+      &::placeholder {
+        color: $bg-red !important;
+      }
+      &:-ms-input-placeholder {
+        color: $bg-red !important;
+      }
+      &::-webkit-input-placeholder {
+        color: $bg-red !important;
+      }
+      &:-moz-placeholder {
+        color: $bg-red !important;
+      }
+    }
+  }
+}
+

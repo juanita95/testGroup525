@@ -1,9 +1,7 @@
-import {ApplicationRef, ChangeDetectorRef, Injectable, NgZone} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 export enum LoadingColors {
-  ORANGE = '#c58511',
-  BLUE = '#07324f',
-  WHITE = 'white'
+  GREEN = '#2bca95',
 }
 
 @Injectable({
@@ -38,10 +36,10 @@ export class LoadingService {
   };
 
   private _loading = false;
-  private _loadingColor = LoadingColors.ORANGE;
+  private _loadingColor = LoadingColors.GREEN;
 
 
-  public setLoading(status: boolean, color: LoadingColors = LoadingColors.ORANGE) {
+  public setLoading(status: boolean, color: LoadingColors = LoadingColors.GREEN) {
     setTimeout(() => {
       // console.log('['+Date.now()+']',"prev",this._loading,'change', status);
       this._loading = status;

@@ -5,15 +5,13 @@ import {
   AfterViewInit,
   ViewChild,
   EventEmitter,
-  Output, OnDestroy, OnChanges, SimpleChanges,
+  Output,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import {MatPaginator, MatPaginatorIntl} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
-import {BehaviorSubjectService} from "../../services/behavior-subject.service";
-import {MatDialog} from "@angular/material/dialog";
-import {Subscription} from "rxjs";
-import {AdminUsersService} from "../../../user-management/services/admin-users-service";
 
 @Component({
   selector: 'app-table',
@@ -21,37 +19,27 @@ import {AdminUsersService} from "../../../user-management/services/admin-users-s
   styleUrls: ['./table.component.scss'],
 })
 
-export class TableComponent extends MatPaginatorIntl implements OnInit, AfterViewInit, OnDestroy, OnChanges {
+export class TableComponent extends MatPaginatorIntl implements OnInit, AfterViewInit, OnChanges {
 
-  @Input() columns: string[];
-  @Input() columnsName: string[];
+  @Input() columns: string[] = [];
+  @Input() columnsName: string[] = [];
   @Input() arrayElements: any;
   @Output() dataModal = new EventEmitter<any>();
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  public displayedColumns: string[];
-  public dataSource: MatTableDataSource<any>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  public displayedColumns!: string[];
+  public dataSource!: MatTableDataSource<any>;
   public sizeUsersTable: number = 6;
-  public endIndex: number;
-  public isCollapsedSB: boolean;
-  public positionsImg: number;
-  private subscription$: Subscription = new Subscription();
+  public endIndex!: number;
+  public isCollapsedSB!: boolean;
 
-  constructor(
-    private behaviorSubjectService: BehaviorSubjectService,
-    public dialog: MatDialog,
-  ) {
+  constructor() {
     super();
   }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.arrayElements);
-    this.getEventObservable();
-  }
-
-  ngOnDestroy() {
-    this.subscription$.unsubscribe();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -84,15 +72,6 @@ export class TableComponent extends MatPaginatorIntl implements OnInit, AfterVie
     const startIndex = page;
     return `${startIndex + 1}`;
   }
-  /** get data of observables for change styles when sidebar is collpased **/
-
-  getEventObservable(): void{
-    this.subscription$.add(
-      this.behaviorSubjectService.bSubjectCollapseSB.subscribe((isCollapsed)=>{
-        this.isCollapsedSB = isCollapsed;
-      })
-    );
-  }
 
   /** send icon clicked **/
 
@@ -100,5 +79,4 @@ export class TableComponent extends MatPaginatorIntl implements OnInit, AfterVie
     const modalInfo = {column, obj};
     this.dataModal.emit(modalInfo);
   }
-
 }
