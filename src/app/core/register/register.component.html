@@ -1,0 +1,181 @@
+<main class="register-user">
+  <h1 class="text-title main-title">
+    FORMULARIO DE CONTACTO
+  </h1>
+  <body class="body-register">
+   <form class="form-bl" autocomplete="off" [formGroup]="formRegister" (ngSubmit)="register()">
+    <section class="input-row">
+      <mat-form-field appearance="fill" class="mat-form-general">
+        <mat-select [class.is-invalid]="invalidField('gender')"
+                    class="general-select"
+                    formControlName="gender"
+                    placeholder="Sexo*">
+          <mat-option *ngFor="let gender of genders" [value]="gender.id">
+            {{gender.text}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div (click)="dp.open()" >
+        <mat-form-field appearance="fill" [class.is-invalid-date-picker]="invalidField('birthDate')"
+                        class="container-data-piker">
+          <!--              calendar-->
+          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+          <input matInput
+                 [min]="minDate"
+                 placeholder="Fecha de nacimiento*"
+                 [matDatepicker]="dp"
+                 [class.is-invalid-date-picker]="invalidField('birthDate')"
+                 (dateChange)="dateChange($event)"
+                 formControlName="birthDate">
+          <mat-datepicker class="container-data-piker" #dp disabled="false"></mat-datepicker>
+          <!--        icon calendar-->
+          <span class="icon-calendar" (click)="dp.open()"></span>
+        </mat-form-field>
+      </div>
+    </section>
+
+    <section class="input-row">
+      <mat-form-field appearance="fill" class="mat-form-general margin-names">
+        <input matInput
+               class="general-input"
+               type="text"
+               [class.is-invalid]="invalidField('name')"
+               placeholder="Nombre*"
+               formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="mat-form-general margin-names">
+        <input matInput
+               type="text"
+               [class.is-invalid]="invalidField('lastName')"
+               placeholder="Apellido*"
+               class="general-input"
+               formControlName="lastName">
+      </mat-form-field>
+    </section>
+
+    <section class="input-row-alone">
+      <mat-form-field appearance="fill" class="mat-form-general margin-names">
+        <input matInput
+               [class.is-invalid]="invalidField('email')"
+               type="text"
+               placeholder="Email*"
+               class="general-input"
+               formControlName="email">
+      </mat-form-field>
+
+    </section>
+
+    <section class="input-row-alone">
+      <mat-form-field appearance="fill" class="mat-form-general margin-names">
+        <input matInput
+               type="text"
+               [class.is-invalid]="invalidField('address')"
+               placeholder="Dirección*"
+               class="general-input"
+               formControlName="address">
+      </mat-form-field>
+
+    </section>
+
+    <section class="input-row">
+      <mat-form-field appearance="fill" class="mat-form-general">
+        <input matInput
+               type="text"
+               placeholder="Casa / Apartamento"
+               class="general-input"
+               formControlName="typeHome">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="mat-form-general">
+        <mat-select [class.is-invalid]="invalidField('country')"
+                    class="general-select "
+                    formControlName="country"
+                    placeholder="País*">
+          <mat-option *ngFor="let gender of genders" [value]="gender.id">
+            {{gender.text}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </section>
+
+    <section class="input-row">
+      <mat-form-field appearance="fill" class="mat-form-general">
+        <mat-select [class.is-invalid]="invalidField('state')"
+                    class="general-select "
+                    formControlName="state"
+                    placeholder="Departamento*">
+          <mat-option *ngFor="let gender of genders" [value]="gender.id">
+            {{gender.text}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="mat-form-general">
+        <mat-select [class.is-invalid]="invalidField('city')"
+                    class="general-select "
+                    formControlName="city"
+                    placeholder="Ciudad*">
+          <mat-option *ngFor="let gender of genders" [value]="gender.id">
+            {{gender.text}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </section>
+
+    <section class="input-row-alone">
+      <div class="text-area-comment" [class.is-invalid]="invalidField('comments')">
+              <textarea type="text"
+                        maxlength="500"
+                        class="text-area-general text-m-bl"
+                        cdkTextareaAutosize
+                        placeholder="Comentarios*"
+                        formControlName="comments"
+                        cdkAutosizeMaxRows="100">
+              </textarea>
+      </div>
+    </section>
+     <div class="send-data">
+       <button type="submit" mat-button class="submit-button">Enviar</button>
+     </div>
+
+  </form>
+   <section class="contact-data">
+     <div>
+       <div class="contact">
+         <mat-icon class="icon-color"> email</mat-icon>
+         <p class="text-m-gy"> consultas@correo.com</p>
+       </div>
+
+       <div class="contact">
+         <mat-icon class="icon-color"> location_on</mat-icon>
+         <p class="text-m-gy text-address">  Av.15 de julio Nro B - ciudad - País</p>
+       </div>
+
+       <div class="contact">
+         <mat-icon class="icon-tell icon-color"> call</mat-icon>
+         <div class="telphones">
+           <p class="text-m-gy first-tel"> (01) 3453 - 645</p>
+           <p class="text-m-gy"> (01) 3233 - 454</p>
+         </div>
+       </div>
+     </div>
+
+     <div class="buttons-social-media">
+       <button class="circle-button">
+         <img class="icon-button" src="../../../assets/svg/register/facebook.svg" alt="Icono de facebook">
+       </button>
+       <button class="circle-button">
+         <img class="icon-button" src="../../../assets/svg/register/twitter.svg" alt="Icono de twitter">
+       </button>
+       <button class="circle-button">
+         <img class="icon-button" src="../../../assets/svg/register/instagram.svg" alt="Icono de instagram">
+       </button>
+     </div>
+   </section>
+
+  </body>
+</main>
+

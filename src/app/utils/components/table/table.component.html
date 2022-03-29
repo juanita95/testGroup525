@@ -1,0 +1,71 @@
+<div class="table-main">
+  <div class="table-wrapper">
+    <div class="contents-table" [ngClass]="isCollapsedSB===true ? '': 'contents-table-false'">
+      <p class="title-table small-sub-title-bl">Gestión de usuarios</p>
+      <div class="table-container scrollbar">
+        <!-- table admin users -->
+        <mat-card class="mat-card">
+          <div class="table">
+            <div class="table-content scrollbar">
+              <table  mat-table
+                      [dataSource]="dataSource"
+                      matSort>
+                <!-- columns -->
+                <ng-container *ngFor="let column of columns.slice(0,columns.length-2); let i = index"  [matColumnDef]="column">
+                  <th mat-sort-header class="small-text-b-bl"
+                      *matHeaderCellDef> {{columnsName[i]}}
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <p>{{element[column]}}</p>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="edit">
+                  <th mat-header-cell *matHeaderCellDef class="disable-arrow"></th>
+                  <td mat-cell *matCellDef="let element" class="action-link">
+                    <img class="img-edit-delete"
+                         (click)="openDialog('edit-user',element)"
+                         src="/../../../assets/svg/table/edit.svg">
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="delete">
+                  <th mat-sort-header *matHeaderCellDef class="text-actions small-text-b-bl">Acciones</th>
+                  <td mat-cell *matCellDef="let element" class="action-link">
+                    <img class="img-edit-delete"
+                         (click)="openDialog('delete-user',element)"
+                         src="/../../../assets/svg/table/delete.svg">
+                  </td>
+                </ng-container>
+
+                <!-- row with differents styles -->
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="
+                let row;
+                let even = even;
+                columns: displayedColumns;"
+                    [ngClass]="{gray: even}"></tr>
+              </table>
+            </div>
+            <!-- paginator table -->
+
+            <div [ngClass]="isCollapsedSB===true ? 'content-paginator-true': 'content-paginator-false'"
+                 class="mat-paginator content-paginator">
+              <mat-paginator [pageSizeOptions]="[sizeUsersTable]" >
+              </mat-paginator>
+              <div class="size-page">
+                <p class="end-index"> de {{endIndex}} </p>
+              </div>
+            </div>
+
+
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

@@ -1,0 +1,155 @@
+@import "src/assets/scss/index";
+
+.register-user {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(rgba(3, 33, 53, 0.65), rgba(3, 33, 53, 0.65)), url('../../../assets/img/register/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 100%;
+  position: fixed;
+  flex-direction: column;
+}
+
+.form-bl {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-row {
+  flex-direction: row;
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: 49% 49%;
+  margin-bottom: 4%;
+}
+
+.input-row-alone {
+  width: 100%;
+  display: grid;
+  margin-bottom: 4%;
+}
+
+.text-title {
+  margin: 2% auto;
+  width: 70%;
+}
+
+.buttons-social-media {
+  display: flex;
+  flex-direction: row;
+  margin: 10% 0 0% 14%;
+}
+
+.circle-button {
+  margin-right: 3%;
+}
+
+.body-register {
+  display: flex;
+  flex-direction: row-reverse;
+  background: $bg-white;
+  margin: 0 auto;
+  justify-content: space-between;
+  padding: 3% 4.5%;
+  height: 54vh;
+  overflow: auto;
+  width: 56%;
+  box-shadow: 0px 0px 8px rgb(0 0 0 / 20%);
+}
+
+.icon-color {
+  color: $bg-green;
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: 14% 99%;
+  margin-bottom: 4%;
+}
+
+.first-tel {
+  margin-bottom: 1%;
+}
+
+.icon-tell {
+  transform: rotate(262deg);
+}
+
+.icon-button {
+  width: 20px;
+}
+
+.send-data {
+  width: 100%;
+  display: flex;
+  margin-top: -2%;
+  justify-content: flex-end;
+}
+
+.container-data-piker{
+  width: 100%;
+}
+
+@media (max-width: $breakpoint-desktop-usual) {
+  .body-register {
+    flex-direction: column;
+    overflow: scroll;
+    align-items: center;
+  }
+
+  .contact-data {
+    margin-top: 5%;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .buttons-social-media {
+    margin: 0;
+  }
+
+  .form-bl{
+    width: 100%;
+  }
+}
+
+.comments-input{
+  height: 3.5rem !important;
+}
+
+.text-area-comment{
+  width: 100%;
+  border: 1px solid $bg-gray;
+  display: flex;
+}
+
+textarea::-webkit-input-placeholder {
+  color: $bg-black;
+}
+
+@media (max-width: $breakpoint-lower-tablet) {
+  .body-register {
+    width: 80%;
+  }
+
+  .text-address{
+    width: 70%;
+  }
+
+}
+
+@media (min-width: $breakpoint-desktop-usual) {
+  .contact-data {
+    margin-top: 8%;
+    margin-right: 7%;
+  }
+
+  .form-bl {
+    width: 50%;
+  }
+}
+
+
